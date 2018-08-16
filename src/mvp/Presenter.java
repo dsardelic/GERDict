@@ -59,7 +59,7 @@ public class Presenter {
 	public void loadDictionary() {
 		JFileChooser fileChooser = new JFileChooser();
 		try {
-			fileChooser.setCurrentDirectory(new File(Presenter.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()));
+			fileChooser.setCurrentDirectory(new File(Presenter.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParentFile().getParentFile());
 		} catch (URISyntaxException e1) {
 			fileChooser.setCurrentDirectory(new File(".."));
 		}
