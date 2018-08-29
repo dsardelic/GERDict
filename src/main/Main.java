@@ -2,23 +2,22 @@ package main;
 
 import java.awt.EventQueue;
 
-import mvp.Model;
-import mvp.Presenter;
-import mvp.View;
+import models.MainModel;
+import presenters.MainPresenter;
 import properties.Config;
+import views.MainView;
 
 public class Main {
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					Config.readConfig();
-					Model model = new Model();
-					View view = new View();
-					Presenter presenter = new Presenter();
-					presenter.setModel(model);
-					presenter.setView(view);
-					presenter.run();
+					MainView view = new MainView();
+					MainPresenter presenter = new MainPresenter(new MainModel(), view);
+					view.setPresenter(presenter);
+					presenter.displayView();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
