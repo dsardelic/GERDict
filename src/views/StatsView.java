@@ -5,7 +5,6 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
@@ -153,7 +152,7 @@ public class StatsView extends JFrame implements View {
 		table.getColumnModel().getColumn(4).setCellRenderer(new PercentValueCellRenderer());
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		int tableWidth = resizeColumnWidths(table);
-		int tableHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
+		int tableHeight = 800;
 		scrollPane.setMinimumSize(new Dimension(tableWidth, tableHeight));
 		scrollPane.setPreferredSize(new Dimension(tableWidth, tableHeight));
 		scrollPane.setMaximumSize(new Dimension(tableWidth, Integer.MAX_VALUE));
