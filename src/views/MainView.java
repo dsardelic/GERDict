@@ -38,6 +38,8 @@ import properties.Messages;
 public class MainView extends JFrame implements View {
 
     private static final long serialVersionUID = -4144132040991912402L;
+    
+    private final Color rdbtnColor = new Color(230, 230, 230);
 
     private JMenuBar menuBar;
     private JMenu menuFile;
@@ -167,7 +169,7 @@ public class MainView extends JFrame implements View {
         lblWordToTranslate.setFont(new Font("Tahoma", Font.PLAIN, 16));
 
         tfWordToTranslate.setFont(new Font("Tahoma", Font.BOLD, 20));
-        tfWordToTranslate.setBackground(new Color(238, 238, 238));
+        tfWordToTranslate.setBackground(rdbtnColor);
         tfWordToTranslate.setColumns(22);
 
         btnLoadNewQuestion.setMnemonic(KeyEvent.VK_ENTER);
@@ -379,7 +381,7 @@ public class MainView extends JFrame implements View {
         btngrpArticles.clearSelection();
         for (AbstractButton abstractButton : Collections.list(btngrpArticles.getElements())) {
             JRadioButton rdbtnArticle = (JRadioButton) abstractButton;
-            rdbtnArticle.setBackground(new Color(238, 238, 238));
+            rdbtnArticle.setBackground(rdbtnColor);
             rdbtnArticle.setEnabled(correctGerArticle != null);
             rdbtnArticle.addActionListener(updateStatsListener);
         }
@@ -388,7 +390,7 @@ public class MainView extends JFrame implements View {
         int i = 0;
         for (AbstractButton abstractButton : Collections.list(btngrpTranslations.getElements())) {
             JRadioButton rdbtnTranslation = (JRadioButton) abstractButton;
-            rdbtnTranslation.setBackground(new Color(238, 238, 238));
+            rdbtnTranslation.setBackground(rdbtnColor);
             rdbtnTranslation.setText(possibleTranslations.get(i));
             rdbtnTranslation.setActionCommand(possibleTranslations.get(i));
             rdbtnTranslation.addActionListener(updateStatsListener);
@@ -412,7 +414,7 @@ public class MainView extends JFrame implements View {
                 if (rdbtnAnswer.isSelected()) {
                     rdbtnAnswer.setBackground(Color.RED);
                 } else {
-                    rdbtnAnswer.setBackground(new Color(238, 238, 238));
+                    rdbtnAnswer.setBackground(rdbtnColor);
                 }
             }
         }
@@ -434,7 +436,7 @@ public class MainView extends JFrame implements View {
                 if (rdbtnTranslation.isSelected()) {
                     rdbtnTranslation.setBackground(Color.RED);
                 } else {
-                    rdbtnTranslation.setBackground(new Color(238, 238, 238));
+                    rdbtnTranslation.setBackground(rdbtnColor);
                 }
             }
         }
