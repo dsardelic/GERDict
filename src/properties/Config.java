@@ -29,7 +29,7 @@ public class Config {
             }
             statsFolder = config.getProperty("STATS_FOLDER", defaultStatsFolder);
             statsFileName = config.getProperty("STATS_FILENAME", "GERDict_stats.ser");
-            recentAnswersLimit = new Integer(config.getProperty("RECENT_TRIES_LIMIT", "20")).intValue();
+            recentAnswersLimit = Integer.parseInt(config.getProperty("RECENT_TRIES_LIMIT", "20"));
         } catch (Exception e) {
             System.err.println("Error reading config.properties.");
         } finally {

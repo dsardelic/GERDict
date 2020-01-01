@@ -29,10 +29,10 @@ public class StatsModel implements java.io.Serializable {
         int row = 0;
         for (Map.Entry<String, WordStats> entry : statsModel.wordsStats.entrySet()) {
             data[row][0] = entry.getKey();
-            data[row][1] = new Integer(entry.getValue().getRecentAnswersCount());
-            data[row][2] = new Double(entry.getValue().getRecentAccuracy());
-            data[row][3] = new Integer(entry.getValue().getOverallAnswersCount());
-            data[row][4] = new Double(entry.getValue().getOverallAccuracy());
+            data[row][1] = entry.getValue().getRecentAnswersCount();
+            data[row][2] = entry.getValue().getRecentAccuracy();
+            data[row][3] = entry.getValue().getOverallAnswersCount();
+            data[row][4] = entry.getValue().getOverallAccuracy();
             ++row;
         }
         return data;
