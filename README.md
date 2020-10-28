@@ -30,7 +30,7 @@ The use is pretty straightforward. After selecting the dictionary, the first que
 
 The program takes notice whether the word to be translated has a corresponding article or not, so as to display a set of random translations which also do or do not have a corresponding article. Since only one displayed answer is correct, the dictionary should contain at least 6 words with articles and 6 words/expressions without articles.
 
-The next question is loaded by pressing the "Next word" button or by using the keyboard shortcut Alt+Enter.
+The next question is loaded by pressing the "Next word" button. Same thing can be achieved using the keyboard shortcut Alt+Enter or by right-clicking any one of the available answers.
 
 The user can choose to translate the words from German and to German. The change is visible after the next question loads.
 

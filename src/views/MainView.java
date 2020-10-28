@@ -11,7 +11,11 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Collections;
 import java.util.List;
 
@@ -38,7 +42,7 @@ import properties.Messages;
 public class MainView extends JFrame implements View {
 
     private static final long serialVersionUID = -4144132040991912402L;
-    
+
     private final Color rdbtnColor = new Color(230, 230, 230);
 
     private JMenuBar menuBar;
@@ -111,6 +115,7 @@ public class MainView extends JFrame implements View {
 
         ActionListener highlightArticlesListener = new HighlightArticlesListener();
         ActionListener highlightTranslationsListener = new HighlightTranslationsListener();
+        MouseListener myMouseListener = new MyMouseListener();
 
         // MENU 'FILE'
 
@@ -207,6 +212,7 @@ public class MainView extends JFrame implements View {
         rdbtnArticleDer.setFont(new Font("Tahoma", Font.BOLD, 18));
         rdbtnArticleDer.setActionCommand(Dictionary.DER);
         rdbtnArticleDer.addActionListener(highlightArticlesListener);
+        rdbtnArticleDer.addMouseListener(myMouseListener);
         bottomPanel.add(rdbtnArticleDer, gbc_rdbtnArticleDer);
 
         GridBagConstraints gbc_rdbtnArticleDie = new GridBagConstraints();
@@ -218,6 +224,7 @@ public class MainView extends JFrame implements View {
         rdbtnArticleDie.setFont(new Font("Tahoma", Font.BOLD, 18));
         rdbtnArticleDie.setActionCommand(Dictionary.DIE);
         rdbtnArticleDie.addActionListener(highlightArticlesListener);
+        rdbtnArticleDie.addMouseListener(myMouseListener);
         bottomPanel.add(rdbtnArticleDie, gbc_rdbtnArticleDie);
 
         GridBagConstraints gbc_rdbtnArticleDas = new GridBagConstraints();
@@ -229,6 +236,7 @@ public class MainView extends JFrame implements View {
         rdbtnArticleDas.setFont(new Font("Tahoma", Font.BOLD, 18));
         rdbtnArticleDas.setActionCommand(Dictionary.DAS);
         rdbtnArticleDas.addActionListener(highlightArticlesListener);
+        rdbtnArticleDas.addMouseListener(myMouseListener);
         bottomPanel.add(rdbtnArticleDas, gbc_rdbtnArticleDas);
 
         GridBagConstraints gbc_lblTranslation = new GridBagConstraints();
@@ -248,6 +256,7 @@ public class MainView extends JFrame implements View {
         gbc_rdbtnTranslation1.gridy = 1;
         rdbtnTranslation1.setFont(new Font("Tahoma", Font.BOLD, 18));
         rdbtnTranslation1.addActionListener(highlightTranslationsListener);
+        rdbtnTranslation1.addMouseListener(myMouseListener);
         bottomPanel.add(rdbtnTranslation1, gbc_rdbtnTranslation1);
 
         GridBagConstraints gbc_rdbtnTranslation2 = new GridBagConstraints();
@@ -258,6 +267,7 @@ public class MainView extends JFrame implements View {
         gbc_rdbtnTranslation2.gridy = 2;
         rdbtnTranslation2.setFont(new Font("Tahoma", Font.BOLD, 18));
         rdbtnTranslation2.addActionListener(highlightTranslationsListener);
+        rdbtnTranslation2.addMouseListener(myMouseListener);
         bottomPanel.add(rdbtnTranslation2, gbc_rdbtnTranslation2);
 
         GridBagConstraints gbc_rdbtnTranslation3 = new GridBagConstraints();
@@ -268,6 +278,7 @@ public class MainView extends JFrame implements View {
         gbc_rdbtnTranslation3.gridy = 3;
         rdbtnTranslation3.setFont(new Font("Tahoma", Font.BOLD, 18));
         rdbtnTranslation3.addActionListener(highlightTranslationsListener);
+        rdbtnTranslation3.addMouseListener(myMouseListener);
         bottomPanel.add(rdbtnTranslation3, gbc_rdbtnTranslation3);
 
         GridBagConstraints gbc_rdbtnTranslation4 = new GridBagConstraints();
@@ -278,6 +289,7 @@ public class MainView extends JFrame implements View {
         gbc_rdbtnTranslation4.gridy = 4;
         rdbtnTranslation4.setFont(new Font("Tahoma", Font.BOLD, 18));
         rdbtnTranslation4.addActionListener(highlightTranslationsListener);
+        rdbtnTranslation4.addMouseListener(myMouseListener);
         bottomPanel.add(rdbtnTranslation4, gbc_rdbtnTranslation4);
 
         GridBagConstraints gbc_rdbtnTranslation5 = new GridBagConstraints();
@@ -288,6 +300,7 @@ public class MainView extends JFrame implements View {
         gbc_rdbtnTranslation5.gridy = 5;
         rdbtnTranslation5.setFont(new Font("Tahoma", Font.BOLD, 18));
         rdbtnTranslation5.addActionListener(highlightTranslationsListener);
+        rdbtnTranslation5.addMouseListener(myMouseListener);
         bottomPanel.add(rdbtnTranslation5, gbc_rdbtnTranslation5);
 
         // FRAME
@@ -315,8 +328,8 @@ public class MainView extends JFrame implements View {
         btngrpTranslations.add(rdbtnTranslation1);
         btngrpTranslations.add(rdbtnTranslation2);
         btngrpTranslations.add(rdbtnTranslation3);
-        btngrpTranslations.add(rdbtnTranslation5);
         btngrpTranslations.add(rdbtnTranslation4);
+        btngrpTranslations.add(rdbtnTranslation5);
     }
 
     public void setInputEnabled(boolean enabled) {
@@ -328,8 +341,8 @@ public class MainView extends JFrame implements View {
         rdbtnTranslation1.setEnabled(enabled);
         rdbtnTranslation2.setEnabled(enabled);
         rdbtnTranslation3.setEnabled(enabled);
-        rdbtnTranslation5.setEnabled(enabled);
         rdbtnTranslation4.setEnabled(enabled);
+        rdbtnTranslation5.setEnabled(enabled);
     }
 
     @Override
@@ -457,6 +470,16 @@ public class MainView extends JFrame implements View {
         for (AbstractButton abstractButton : Collections.list(btngrpTranslations.getElements())) {
             JRadioButton rdbtnTranslation = (JRadioButton) abstractButton;
             rdbtnTranslation.removeActionListener(updateStatsListener);
+        }
+    }
+
+    class MyMouseListener extends MouseAdapter {
+        public void mouseClicked(MouseEvent evt) {
+            // catch right mouse click
+            if ((evt.getModifiers() & InputEvent.BUTTON3_MASK) != 0) {
+                presenter.loadNewQuestion();
+                btnLoadNewQuestion.requestFocusInWindow();
+            }
         }
     }
 }
