@@ -38,6 +38,7 @@ public class Dictionary {
         while (rows.hasNext()) {
             XSSFRow row = (XSSFRow) rows.next();
             String gerWord = row.getCell(0, Row.CREATE_NULL_AS_BLANK).toString();
+            if (gerWord.equals("")) break;
             String gerArticle = row.getCell(1, Row.CREATE_NULL_AS_BLANK).toString();
             String nonGerWord = row.getCell(2, Row.CREATE_NULL_AS_BLANK).toString();
             if (gerArticle.equals("")) {
