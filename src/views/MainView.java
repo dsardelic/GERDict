@@ -476,7 +476,7 @@ public class MainView extends JFrame implements View {
     class MyMouseListener extends MouseAdapter {
         public void mouseClicked(MouseEvent evt) {
             // catch right mouse click
-            if ((evt.getModifiers() & InputEvent.BUTTON3_MASK) != 0) {
+            if ((evt.getModifiersEx() & InputEvent.BUTTON3_DOWN_MASK) != 0) {
                 presenter.loadNewQuestion();
                 btnLoadNewQuestion.requestFocusInWindow();
             }
