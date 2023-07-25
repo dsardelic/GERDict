@@ -33,6 +33,7 @@ import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 import dict.Dictionary;
 import presenters.MainPresenter;
@@ -475,8 +476,7 @@ public class MainView extends JFrame implements View {
 
     class MyMouseListener extends MouseAdapter {
         public void mouseClicked(MouseEvent evt) {
-            // catch right mouse click
-            if ((evt.getModifiersEx() & InputEvent.BUTTON3_DOWN_MASK) != 0) {
+            if (SwingUtilities.isRightMouseButton(evt)) {
                 presenter.loadNewQuestion();
                 btnLoadNewQuestion.requestFocusInWindow();
             }
